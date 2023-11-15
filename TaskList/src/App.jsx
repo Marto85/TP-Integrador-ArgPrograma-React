@@ -1,35 +1,56 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+// App.jsx
+import React, { useState } from 'react';
+import Menu from './Menu';
+import TaskList from './TaskList';
+import TaskForm from './TaskForm';
+import TaskFormStyled from './TaskFormStyled';
 
-function App() {
-  const [count, setCount] = useState(0)
+const App = () => {
+    const [taskLists, setTaskLists] = useState([]);
+    const [tasks, setTasks] = useState([]);
+    const [currentList, setCurrentList] = useState(null);
 
-  return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
-}
+    const switchList = (listId) => {
+        setCurrentList(listId);
+        const tasksForList = tasks.filter((task) => task.list_id === listId);
+        setTasks(tasksForList);
+    };
 
-export default App
+    const addTask = (newTask) => {
+        setTasks([...tasks, newTask]);
+    };
+
+    const handleTaskCompletion = (taskId) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === taskId ? { ...task, completed: !task.completed } : task
+            )
+        );
+    };
+
+    const handleTaskDeletion = (taskId) => {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== taskId));
+    };
+
+    const createNewList = (newList) => {
+        setTaskLists([...taskLists, { list_id: Date.now(), ...newList }]);
+    };
+
+    return (
+        <div className="app">
+            <Menu taskLists={taskLists} switchList={switchList} createNewList={createNewList} />
+            {currentList && (
+                <>
+                    <TaskList
+                        tasks={tasks}
+                        handleTaskCompletion={handleTaskCompletion}
+                        handleTaskDeletion={handleTaskDeletion}
+                    />
+                    <TaskForm addTask={addTask} />
+                </>
+            )}
+        </div>
+    );
+};
+
+export default App;

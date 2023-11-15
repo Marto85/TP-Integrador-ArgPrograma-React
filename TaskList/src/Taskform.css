@@ -1,0 +1,16 @@
+/* TaskForm.css */
+form {
+    display: flex;
+    margin-bottom: 20px;
+}
+
+input {
+    flex: 1;
+    padding: 10px;
+    margin-right: 10px;
+}
+
+button {
+    padding: 10px;
+    cursor: pointer;
+}
