@@ -1,6 +1,5 @@
-// TaskFormStyled.jsx
-import React, { useState } from 'react';
-import backgroundImg from './assets/ToDo.png';
+import { useState } from 'react';
+// import backgroundImg from './assets/ToDo.png';
 
 const TaskFormStyled = ({ addTask }) => {
     const [taskName, setTaskName] = useState('');

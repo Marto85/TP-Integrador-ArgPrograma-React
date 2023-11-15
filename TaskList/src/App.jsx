@@ -1,5 +1,4 @@
-// App.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Menu from './Menu';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
@@ -46,7 +45,11 @@ const App = () => {
                         handleTaskCompletion={handleTaskCompletion}
                         handleTaskDeletion={handleTaskDeletion}
                     />
-                    <TaskForm addTask={addTask} />
+                    {currentList?.someCondition ? (
+                        <TaskFormStyled addTask={addTask} />
+                    ) : (
+                        <TaskForm addTask={addTask} />
+                    )}
                 </>
             )}
         </div>

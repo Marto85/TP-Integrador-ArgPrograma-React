@@ -1,6 +1,4 @@
-// Menu.jsx
-import React, { useState } from 'react';
-import TaskList from './TaskList';
+import { useState } from 'react';
 
 const Menu = ({ taskLists, switchList, createNewList }) => {
   const [showForm, setShowForm] = useState(false);

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import { useState } from 'react';
 import TaskFormStyled from './TaskFormStyled';
 
 const TaskForm = ({ addTask, styled }) => {
