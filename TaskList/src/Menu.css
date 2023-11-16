@@ -1,7 +1,17 @@
-/* Menu.css */
 .menu {
     display: flex;
     flex-wrap: wrap;
+}
+
+.tasklist-create {
+    display:flex;
+    flex-direction: column;
+}
+
+.menu input {
+    margin-bottom: 10px;
+    width: 300px;
+    border-radius: 5px;
 }
 
 .card {

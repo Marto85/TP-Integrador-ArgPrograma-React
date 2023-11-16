@@ -1,22 +1,9 @@
-import { useState } from 'react';
-import TaskFormStyled from './TaskFormStyled';
-
-const TaskForm = ({ addTask, styled }) => {
-    const [taskName, setTaskName] = useState('');
-
-    if (styled) {
-        return <TaskFormStyled addTask={addTask} />;
-    }
-
+const TaskForm = ({ newTaskName, setNewTaskName, addTask }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
-        if (taskName.trim() !== '') {
-            addTask({
-                id: Date.now(),
-                name: taskName,
-                completed: false,
-            });
-            setTaskName('');
+        if (newTaskName.trim() !== '') {
+            addTask();
+            setNewTaskName(''); // Limpiar el nombre de la nueva tarea después de agregarla
         }
     };
 
@@ -26,8 +13,8 @@ const TaskForm = ({ addTask, styled }) => {
             <input
                 type="text"
                 placeholder="Nueva tarea"
-                value={taskName}
-                onChange={(e) => setTaskName(e.target.value)}
+                value={newTaskName}
+                onChange={(e) => setNewTaskName(e.target.value)}
             />
             {/* Botón para agregar la tarea */}
             <button type="submit">Agregar</button>
