@@ -1,5 +1,5 @@
 body {
-  background-image: url('../public/imgs/Fondo.webp');
+  background-image: url('./imgs/Fondo.webp');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;

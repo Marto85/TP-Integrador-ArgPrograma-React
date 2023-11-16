@@ -1,12 +1,12 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App.jsx'
-import './App.css'
-import './Menu.css'
-import './Index.css'
-import './Tasklist.css'
-import './Taskitem.css'
-import './Taskform.css'
+import App from './components/App.jsx'
+import '../src/components/App.jsx'
+import '../src/styles/Menu.css'
+import '../src/styles/Index.css'
+import '../src/styles/Tasklist.css'
+import '../src/styles/Taskitem.css'
+import '../src/styles/Taskform.css'
 
 
 

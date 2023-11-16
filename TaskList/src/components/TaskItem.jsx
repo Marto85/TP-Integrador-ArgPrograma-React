@@ -1,4 +1,4 @@
-import './TaskItem.css';
+import '../styles/Taskitem.css';
 
 const TaskItem = ({ task, handleTaskCompletion, handleTaskDeletion }) => {
     return (
