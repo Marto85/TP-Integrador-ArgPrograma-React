@@ -1,9 +1,9 @@
 .task {
     display: flex;
-    align-items: center;
-    margin: 10px;
-    padding: 10px;
+    justify-content: space-between;
     border: 1px solid #ccc;
+    border-radius: 10px;
+    background-color: chocolate;
 }
 
 .completed {

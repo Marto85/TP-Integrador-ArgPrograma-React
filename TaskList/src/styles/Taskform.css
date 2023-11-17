@@ -13,3 +13,19 @@ button {
     padding: 10px;
     cursor: pointer;
 }
+
+.tasklist-create {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 20px;
+    border: 1px solid #ccc;
+    background-color: #f0f0f0;
+}
+
+.tasklist-create input {
+    margin-bottom: 10px;
+    width: 200px;
+    border-radius: 5px;
+}

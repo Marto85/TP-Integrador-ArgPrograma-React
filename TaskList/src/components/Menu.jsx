@@ -20,15 +20,8 @@ const Menu = ({ taskLists, switchList, createNewList }) => {
 
     return (
         <div className="menu">
-            {taskLists.map((list) => (
-                <div key={list.list_id} className="card" onClick={() => switchList(list.list_id)}>
-                    <h3>{list.title}</h3>
-                </div>
-            ))}
-            {/* Botón para mostrar/ocultar formulario */}
-            <button className="new-list" onClick={() => setShowForm(!showForm)}> Nueva lista de tareas</button>
-            {/* Formulario para crear nueva lista */}
-            {showForm && (
+            {showForm ? (
+                // Renderizar el formulario
                 <div className="tasklist-create">
                     <input
                         type="text"
@@ -43,10 +36,24 @@ const Menu = ({ taskLists, switchList, createNewList }) => {
                         onChange={(e) => setNewListDescription(e.target.value)}
                     />
                     <button onClick={handleCreateList}>Crear Lista</button>
+                    {/* Agregar un botón para volver */}
+                    <button onClick={() => setShowForm(false)}>Volver</button>
                 </div>
+            ) : (
+                // Renderizar el botón para mostrar el formulario
+                <button className="new-list" onClick={() => setShowForm(true)}>
+                    Nueva lista de tareas
+                </button>
             )}
+
+            {taskLists.map((list) => (
+                <div key={list.list_id} className="card" onClick={() => switchList(list.list_id)}>
+                    <h3>{list.title}</h3>
+                </div>
+            ))}
         </div>
     );
 };
 
 export default Menu;
+
