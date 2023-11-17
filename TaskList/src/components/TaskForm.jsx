@@ -1,3 +1,5 @@
+import '../styles/Taskform.css';
+
 const TaskForm = ({ newTaskName, setNewTaskName, addTask }) => {
     const handleSubmit = (e) => {
         e.preventDefault();

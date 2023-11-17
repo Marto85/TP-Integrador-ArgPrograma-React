@@ -24,3 +24,9 @@
 .card:hover {
     background-color: #f0f0f0;
 }
+
+.new-list {
+    min-width: 200px;
+    background-color: coral;
+    margin: 0 auto;
+}

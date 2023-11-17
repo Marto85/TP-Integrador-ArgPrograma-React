@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Menu from './Menu';
 import TaskList from './TaskList';
 import TaskForm from './TaskForm';
+import '../styles/App.css';
 
 
 const App = () => {
@@ -56,7 +57,7 @@ const App = () => {
 
     return (
         <div className="app">
-            <h1>Tasks Reminder</h1>
+            <h1 className="title">Tasks Reminder</h1>
             <Menu taskLists={taskLists} switchList={switchList} createNewList={createNewList} />
             {currentList && (
                 <>

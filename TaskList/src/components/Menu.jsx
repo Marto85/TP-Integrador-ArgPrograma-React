@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import '../styles/Menu.css'
 
 const Menu = ({ taskLists, switchList, createNewList }) => {
     const [showForm, setShowForm] = useState(false);
@@ -25,7 +26,7 @@ const Menu = ({ taskLists, switchList, createNewList }) => {
                 </div>
             ))}
             {/* Botón para mostrar/ocultar formulario */}
-            <button onClick={() => setShowForm(!showForm)}>Nueva Lista</button>
+            <button className="new-list" onClick={() => setShowForm(!showForm)}> Nueva lista de tareas</button>
             {/* Formulario para crear nueva lista */}
             {showForm && (
                 <div className="tasklist-create">
