@@ -1,18 +1,18 @@
+// TaskItem.jsx
+
 import '../styles/Taskitem.css';
 
 const TaskItem = ({ task, handleTaskCompletion, handleTaskDeletion }) => {
     return (
         <div className="task">
-            {/* Checkbox para marcar la tarea como completada */}
-            <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={() => handleTaskCompletion(task.id)}
-            />
-            {/* Aplica el estilo condicional solo al nombre de la tarea */}
-            <p className={task.completed ? 'completed' : ''}>{task.name}</p>
-            {/* Botón de eliminar sin aplicar el estilo condicional */}
-            <button onClick={() => handleTaskDeletion(task.id)}>Eliminar</button>
+
+            <div className={`custom-checkbox ${task.completed ? 'completed' : ''}`} onClick={() => handleTaskCompletion(task.id)}>
+                <div className="check-mark">{task.completed ? '✓' : ''}</div>
+            </div>
+
+            <p className={`task-text ${task.completed ? 'completed-text' : ''}`}>{task.name}</p>
+
+            <button className="delete-button" onClick={() => handleTaskDeletion(task.id)}>Eliminar</button>
         </div>
     );
 };

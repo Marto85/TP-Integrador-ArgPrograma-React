@@ -4,12 +4,61 @@
     border: 1px solid #ccc;
     border-radius: 10px;
     background-color: chocolate;
+    padding: 10px;
 }
 
 .completed {
     text-decoration: line-through;
 }
 
-button {
-    margin-left: 10px;
+.completed-text {
+    text-decoration: line-through;
+}
+
+.task .custom-checkbox {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    background-color: chocolate;
+    text-decoration: none;
+}
+
+.task .custom-checkbox .check-mark {
+    color: #00ff00;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.task .custom-checkbox:focus .check-mark {
+    visibility: visible; 
+}
+
+.task.completed .custom-checkbox {
+    background-color: black; 
+    
+}
+
+.task.completed .custom-checkbox .check-mark {
+    color: #00ff00;
+    
+}
+
+.task .custom-checkbox:hover {
+    background-color: #333; 
+}
+
+.task.completed .custom-checkbox:hover {
+    background-color: black;
+}
+
+.task-text {
+    flex: 1;
+    margin: 0;
+    padding: 0 10px;
 }
