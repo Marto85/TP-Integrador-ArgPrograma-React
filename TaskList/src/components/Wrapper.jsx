@@ -48,6 +48,12 @@ const Wrapper = () => {
                     />
                 )
             ))}
+            <div className='filter-container'>
+                <button type="button" className="btn btn-primary">All</button>
+                <button type="button" className="btn btn-info">Active</button>
+                <button type="button" className="btn btn-success">Completed</button>
+                <button type="button" className="btn btn-warning">Clear</button>
+            </div>
         </div>
     );
 };
