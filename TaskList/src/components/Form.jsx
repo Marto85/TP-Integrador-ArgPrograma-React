@@ -12,7 +12,7 @@ const Form = ({ addTask}) => {
     return (
         <form className='form-container' onSubmit={handleSubmit}>
             <input type='text' className='form-input' value={value} placeholder='Agrega aqui una tarea' onChange={(e) => setValue(e.target.value)}></input>
-            <button type="button" className="btn btn-success ms-4">Agregar</button>
+            <button type="submit" className="btn btn-success ms-4">Agregar</button>
         </form>
     )
 }

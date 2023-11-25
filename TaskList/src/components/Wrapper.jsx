@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from "react";
 import Form from "./Form";
 import { v4 as uuidv4 } from "uuid";
 import TaskList from "./TaskList";
@@ -6,32 +6,74 @@ import EditForm from "./EditForm";
 
 const Wrapper = () => {
     const [tasks, setTasks] = useState([]);
+    const [filter, setFilter] = useState("all");
+    console.log("Renderizando Wrapper");
+    // Cargar tareas desde LocalStorage al montar el componente
+    useEffect(() => {
+        console.log("Efecto de carga de tareas ejecutado");
+        const storedTasks = JSON.parse(localStorage.getItem("tasks")) || [];
+        setTasks(storedTasks);
+    }, []);
+
+    // Guardar tareas en LocalStorage cuando cambian
+    useEffect(() => {
+        localStorage.setItem("tasks", JSON.stringify(tasks));
+    }, [tasks]);
 
     const addTask = (task) => {
         setTasks([...tasks, { id: uuidv4(), task: task, completed: false, isEditing: false }]);
     };
 
-    const toogleComplete = id => {
-        setTasks(tasks.map(task => task.id === id ? { ...task, completed: !task.completed } : task));
+    const toogleComplete = (id) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === id ? { ...task, completed: !task.completed } : task
+            )
+        );
     };
 
-    const deleteTask = id => {
-        setTasks(tasks.filter(task => task.id !== id));
+    const deleteTask = (id) => {
+        setTasks((prevTasks) => prevTasks.filter((task) => task.id !== id));
     };
 
-    const editTask = id => {
-        setTasks(tasks.map(task => task.id === id ? { ...task, isEditing: !task.isEditing } : task));
+    const editTask = (id) => {
+        setTasks((prevTasks) =>
+            prevTasks.map((task) =>
+                task.id === id ? { ...task, isEditing: !task.isEditing } : task
+            )
+        );
     };
-    
+
     const editToDo = (task, id) => {
-        setTasks(tasks.map(t => t.id === id ? { ...t, task: task, isEditing: !t.isEditing } : t));
+        setTasks((prevTasks) =>
+            prevTasks.map((t) =>
+                t.id === id ? { ...t, task: task, isEditing: !t.isEditing } : t
+            )
+        );
+    };
+
+    const filterTasks = () => {
+        switch (filter) {
+            case "all":
+                return tasks;
+            case "active":
+                return tasks.filter(task => !task.completed);
+            case "completed":
+                return tasks.filter(task => task.completed);
+            default:
+                return tasks;
+        }
+    };
+
+    const clearCompletedTasks = () => {
+        setTasks(tasks.filter(task => !task.completed));
     };
 
     return (
         <div className="wrapper">
             <h1>Crea tu lista de tareas</h1>
             <Form addTask={addTask} />
-            {tasks.map((task, index) => (
+            {filterTasks().map((task, index) => (
                 task.isEditing ? (
                     <EditForm 
                         key={index}
@@ -49,10 +91,10 @@ const Wrapper = () => {
                 )
             ))}
             <div className='filter-container'>
-                <button type="button" className="btn btn-primary">All</button>
-                <button type="button" className="btn btn-info">Active</button>
-                <button type="button" className="btn btn-success">Completed</button>
-                <button type="button" className="btn btn-warning">Clear</button>
+                <button type="button" className={`btn btn-primary ${filter === 'all' && 'active'}`} onClick={() => setFilter('all')}>All</button>
+                <button type="button" className={`btn btn-info ${filter === 'active' && 'active'}`} onClick={() => setFilter('active')}>Active</button>
+                <button type="button" className={`btn btn-success ${filter === 'completed' && 'active'}`} onClick={() => setFilter('completed')}>Completed</button>
+                <button type="button" className="btn btn-warning" onClick={clearCompletedTasks}>Clear</button>
             </div>
         </div>
     );
